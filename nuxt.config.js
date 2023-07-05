@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     marangaduPort: process.env.MARANGADU_PORT,
     marangaduFrom: process.env.MARANGADU_FROM,
     public: {
-      deploymentDomain,
+      deploymentDomain: process.env.AUTH_ORIGIN,
     },
   },
 
