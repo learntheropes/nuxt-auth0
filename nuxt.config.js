@@ -1,6 +1,3 @@
-const deploymentDomain =
-  'githubduwzdfjuay4o-q2fl--3000--e809191e.local-credentialless.webcontainer.io'; // process.env.NEXTAUTH_URL;
-
 export default defineNuxtConfig({
   runtimeConfig: {
     nextAuthSecret: process.env.NEXTAUTH_SECRET,
@@ -25,7 +22,7 @@ export default defineNuxtConfig({
       addDefaultCallbackUrl: true
     },
     // https://sidebase.io/nuxt-auth/v0.6/configuration/nuxt-auth-handler#nuxtauthhandler
-    origin: `${deploymentDomain}`,
+    origin: process.env.AUTH_ORIGIN,
     // https://sidebase.io/nuxt-auth/v0.6/configuration/nuxt-config#module-nuxtconfigts
     baseUrl: `/api/auth`,
     addDefaultCallbackUrl: true,
