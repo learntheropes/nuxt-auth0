@@ -11,9 +11,5 @@
   "devDependencies": {
     "@sidebase/nuxt-auth": "^0.6.0-beta.3",
     "nuxt": "^3.6.1"
-  },
-  "dependencies": {
-    "faunadb": "^4.8.0",
-    "nodemailer": "^6.9.3"
   }
 }
