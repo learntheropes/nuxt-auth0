@@ -1,15 +1,19 @@
+const isDeployed = (
+  process.env.AUTH_ORIGIN === 'http://localhost:3000'
+  || !process.env.AUTH_ORIGIN
+) ? false : true;
+const deploymentDomain = process.env.AUTH_ORIGIN || 'http://localhost:3000';
+
+
 export default defineNuxtConfig({
   runtimeConfig: {
     nextAuthSecret: process.env.NEXTAUTH_SECRET,
-    faunaSecret: process.env.FAUNA_SECRET,
-    marangaduUser: process.env.MARANGADU_USER,
-    marangaduPassword: process.env.MARANGADU_PASSWORD,
-    marangaduHost: process.env.MARANGADU_HOST,
-    marangaduPort: process.env.MARANGADU_PORT,
-    marangaduFrom: process.env.MARANGADU_FROM,
+    auth0ClientId: process.env.AUTH0_CLIENT_ID,
+    auth0ClientSecret: process.env.AUTH0_CLIENT_SECRET,
+    auth0Issuer: process.env.AUTH0_ISSUER,
     public: {
-      deploymentDomain: process.env.AUTH_ORIGIN,
-    },
+      isDeployed
+    }
   },
 
   modules: [
@@ -22,7 +26,7 @@ export default defineNuxtConfig({
       addDefaultCallbackUrl: true
     },
     // https://sidebase.io/nuxt-auth/v0.6/configuration/nuxt-auth-handler#nuxtauthhandler
-    origin: process.env.AUTH_ORIGIN,
+    origin: deploymentDomain,
     // https://sidebase.io/nuxt-auth/v0.6/configuration/nuxt-config#module-nuxtconfigts
     baseUrl: `/api/auth`,
     addDefaultCallbackUrl: true,

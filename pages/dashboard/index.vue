@@ -1,29 +1,26 @@
 <script setup>
 const { status, data, signOut } = useAuth();
 
-const email = ref(null);
+const user = ref(null);
 
 const getEmail = async () => {
-  const user = await $fetch('/api/dashboard/user', {
+  user.value = await $fetch('/api/dashboard/user', {
     credentials: 'include',
   });
-  email.value = user.email;
-  return user;
 };
 
 const logOut = async () => {
-  await signOut();
+  await signOut('auth0');
 };
 </script>
 
 <template>
   <NuxtLayout>
-    <div><h1>This is the dashboard page, a proteted route</h1></div>
-    <div><button @click="getEmail">Get user</button></div>
+    <div><h1>This is the dashboard page, a protected route</h1></div>
     <div><NuxtLink to="/">Go to home</NuxtLink></div>
-    <div>{{ email }}</div>
-    <div><button @click="logOut">logout</button></div>
     <div>Status: {{ status }}</div>
     <div>Data: {{ data }}</div>
+    <div><button @click="getEmail">Get user (protected api call)</button>{{ user }}</div>
+    <div><button @click="logOut">logout</button></div>
   </NuxtLayout>
 </template>
